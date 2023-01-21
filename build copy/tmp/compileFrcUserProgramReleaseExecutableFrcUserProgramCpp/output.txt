@@ -1,0 +1,12 @@
+See file:///C:/Wave2826/SwerveDriveBase/SwerveDriveBase-Imported/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling AutonomousCommand.cpp successful.
+
+compiling SwervePod.cpp successful.
+
+compiling Robot.cpp successful.
+
+compiling RobotContainer.cpp successful.
+
+compiling SwerveDrive.cpp successful.
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Wave2826/SwerveDriveBase/SwerveDriveBase-Imported/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
