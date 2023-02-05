@@ -34,12 +34,14 @@ using namespace frc;
  */
 SwerveDrive::SwerveDrive() 
 {
-    m_pidgeon = new ctre::phoenixpro::hardware::core::CorePigeon2(21, "*");
+    // inertial measurement unit (IMU) - senses acceleration, angular velocity, + magnetic fields
+    // m_pidgeon = new ctre::phoenixpro::hardware::core::CorePigeon2(21, "*");
+    m_pidgeon = new ctre::phoenixpro::hardware::core::CorePigeon2(k_pigeonID, k_canbus);
 
     // All swerve module motors
     // B = bottom , A = top
     m_rightTopMotor = new CANSparkMax(k_swerveRightTop, CANSparkMaxLowLevel::MotorType::kBrushless); // A
-    m_rightBottomMotor = new CANSparkMax(k_swerveRightBotton, CANSparkMaxLowLevel::MotorType::kBrushless); // B
+    m_rightBottomMotor = new CANSparkMax(k_swerveRightBottom, CANSparkMaxLowLevel::MotorType::kBrushless); // B
     // B = bottom , A = top
     m_leftTopMotor = new CANSparkMax(k_swerveLeftTop, CANSparkMaxLowLevel::MotorType::kBrushless); // A
     m_leftBottomMotor = new CANSparkMax(k_swerveLeftBottom, CANSparkMaxLowLevel::MotorType::kBrushless); // B
@@ -110,7 +112,6 @@ void SwerveDrive::UpdatePodOffsetAngles()
     m_leftPod->UpdateOffsetAngle();
     m_rightPod->UpdateOffsetAngle();
     m_pointPod->UpdateOffsetAngle();
-
 }
 
 double SwerveDrive::GetPodCurrent(int pod, bool motor) 
@@ -169,7 +170,8 @@ void SwerveDrive::SetPointPodOffsetAngle(double offsetAngle)
     m_pointPodOffsetAngle = offsetAngle;
 }
 
-void SwerveDrive::DrivePods(double forward, double strafe, double rotation) {
+void SwerveDrive::DrivePods(double forward, double strafe, double rotation) 
+{
     const double k_gearRatioWheelSpeed = 3.2196;
     const double k_wheelDiameterMeters = 0.0635;
     const double k_wheelCircumferenceMeters = k_wheelDiameterMeters * (double)3.141592653;
@@ -188,6 +190,7 @@ void SwerveDrive::DrivePods(double forward, double strafe, double rotation) {
     // returns each pods state (speed, angle)
     auto [right, left, point] = m_kinematics->ToSwerveModuleStates(speeds);
 
+    // pod current printouts
     if (m_rightPod->Drive(right) || m_leftPod->Drive(left) || m_pointPod->Drive(point)) {
         std::string s[] = {"Right", "Left", "Point"};
         std::string tb[] = {"Bottom", "Top"};

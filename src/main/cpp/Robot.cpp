@@ -84,7 +84,7 @@ double Joystick(double input, double deadzone)
 }
 
 /**
- * This function is called periodically during operator control.
+ * This function is called periodically during operator control
  */
 void Robot::TeleopPeriodic() {
   
@@ -96,12 +96,11 @@ void Robot::TeleopPeriodic() {
   double joystickLY =  Joystick(m_container->getDriver()->GetLeftY(), k_jsDeadband);
   double joystickRX = Joystick(m_container->getDriver()->GetRightX(), k_jsDeadband);
 
-  /// TESTING - joystick inputs with scaling
+  // TESTING - joystick inputs with scaling
   // double currentJoystickLX = m_container->LinearInterpolate(m_container->GetPreviousJoystickInputLX(), joystickLX, 0.0001);
   // double currentJoystickLY = m_container->LinearInterpolate(m_container->GetPreviousJoystickInputLY(), joystickLY, 0.0001);
   // double currentJoystickRX = m_container->LinearInterpolate(m_container->GetPreviousJoystickInputRX(), joystickRX, 0.0001);
   // std::cout << "LX: " << currentJoystickLX << "     " << "LY: " << currentJoystickLY << "     " << "RX: " << currentJoystickRX << std::endl;
-
 
   // joystick inputs for swerve - scaling
   // m_container->m_swerveDrive.DrivePods(
@@ -113,8 +112,8 @@ void Robot::TeleopPeriodic() {
   // m_container->SetPreviousJoystickInputRX(joystickRX);
 
 
-    // joystick inputs for swerve - NO scaling
-    m_container->m_swerveDrive.DrivePods(joystickLX, joystickLY, joystickRX);
+  // joystick inputs for swerve - NO scaling
+  m_container->m_swerveDrive.DrivePods(joystickLX, joystickLY, joystickRX);
 
   // Elevator Operations
   // m_container->m_elevator.runElevator();
