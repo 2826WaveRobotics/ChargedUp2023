@@ -35,8 +35,8 @@ using namespace frc;
 SwerveDrive::SwerveDrive() 
 {
     // inertial measurement unit (IMU) - senses acceleration, angular velocity, + magnetic fields
-    // m_pidgeon = new ctre::phoenixpro::hardware::core::CorePigeon2(21, "*");
-    m_pidgeon = new ctre::phoenixpro::hardware::core::CorePigeon2(k_pigeonID, k_canbus);
+    // m_pigeon = new ctre::phoenixpro::hardware::core::CorePigeon2(21, "*");
+    // m_pigeon = new ctre::phoenixpro::hardware::core::CorePigeon2(k_pigeonID, k_canbus);
 
     // All swerve module motors
     // B = bottom , A = top
@@ -50,12 +50,12 @@ SwerveDrive::SwerveDrive()
     m_pointBottomMotor = new CANSparkMax(k_swervePointBottom, CANSparkMaxLowLevel::MotorType::kBrushless); // R
 
     // explicitly set all motors to coast
-    m_rightTopMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-    m_rightBottomMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-    m_leftTopMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-    m_leftBottomMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-    m_pointTopMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-    m_pointBottomMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+    m_rightTopMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
+    m_rightBottomMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
+    m_leftTopMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
+    m_leftBottomMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
+    m_pointTopMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
+    m_pointBottomMotor->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
 
 
     // set initial offset angles from the smart dashboard
@@ -94,11 +94,11 @@ void SwerveDrive::initialize()
 void SwerveDrive::Periodic() 
 {
     // TESTING Pigeon 2.0 
-    std::cout << "yaw: " << m_pidgeon->GetYaw() << std::endl;
-    std::cout << "pitch: " << m_pidgeon->GetPitch() << std::endl;
-    std::cout << "roll: " << m_pidgeon->GetRoll() << std::endl;
-    std::cout << "gx: " << m_pidgeon->GetGravityVectorX() << std::endl;
-    std::cout << "id: " << m_pidgeon->GetDeviceID() << std::endl;
+    // std::cout << "yaw: " << m_pigeon->GetYaw() << "     pitch: " << m_pigeon->GetPitch() << "       roll: " << m_pigeon->GetRoll()  << std::endl;
+    // std::cout << "pitch: " << m_pigeon->GetPitch() << std::endl;
+    // std::cout << "roll: " << m_pigeon->GetRoll() << std::endl;
+    // std::cout << "gx: " << m_pidgeon->GetGravityVectorX() << std::endl;
+    // std::cout << "id: " << m_pidgeon->GetDeviceID() << std::endl;
 
 }
 
@@ -195,8 +195,8 @@ void SwerveDrive::DrivePods(double forward, double strafe, double rotation)
         std::string s[] = {"Right", "Left", "Point"};
         std::string tb[] = {"Bottom", "Top"};
 
-        for (int i = 0; i < 6; i++) {
-            std::cout << tb[i % 2] << " "<< s[i / 3] << ": "<< GetPodCurrent(i / 3, i % 2) << std::endl;
-        }
+        // for (int i = 0; i < 6; i++) {
+        //     std::cout << tb[i % 2] << " "<< s[i / 3] << ": "<< GetPodCurrent(i / 3, i % 2) << std::endl;
+        // }
     }
 }
