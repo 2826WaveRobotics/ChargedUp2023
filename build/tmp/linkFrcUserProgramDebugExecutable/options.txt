@@ -6,6 +6,7 @@ C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramC
 C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\45vqxio4pi9nbs4dcvmcpqo1r\\RobotContainer.o
 C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\5755hwy6zdvf3ckow229yxsu9\\SwerveInitializeCommand.o
 C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\9yvqzo36yqmd3do9iqt0tjs3q\\SwervePod.o
+C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\apmir1y0l57mfqp4pop7kjb3r\\ScoreTopConeWithBalance.o
 C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\azbhnrziv6ao1kobf4di4zwgl\\SwerveDrive.o
 C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\b090uxgyspjmb6jsenh4cfckl\\DriveTimed.o
 C:\\Wave2826\\ChargedUp2023\\build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\d75jfowehhiztss5dcaesyvz3\\ScoreConeMid.o
