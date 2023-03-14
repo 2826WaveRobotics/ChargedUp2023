@@ -85,10 +85,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand()
     m_chooser.AddOption("Auto Balance", new AutoBalance(&m_swerveDrive));
     
     m_chooser.AddOption("Stow Elevator", new StowElevator(&m_elevator));
-    m_chooser.AddOption("End Effector Down", new EndEffectorDown(&m_elevator));
-    m_chooser.AddOption("End Effector Up", new EndEffectorUp(&m_elevator));
-    m_chooser.AddOption("Stow Elevator", new StowElevator(&m_elevator));
-
+   
     m_chooser.AddOption("Score Top Cone", new SequentialScoreTopCone(&m_elevator));
     m_chooser.AddOption("Score Mid Cone", new SequentialScoreMidCone(&m_elevator));
     m_chooser.AddOption("Score Top Cone Backout", new ScoreTopConeBackout(&m_elevator, &m_swerveDrive));

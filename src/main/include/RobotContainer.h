@@ -20,6 +20,7 @@
 #include "subsystems/Elevator.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Vision.h"
+#include "subsystems/EndEffector.h"
 
 // need to include auto routines
 #include "commands/AutonomousCommand.h"
@@ -32,9 +33,6 @@
 #include "commands/ScoreMidConeWithBalance.h"
 #include "commands/AutoBalance.h"
 #include "commands/StowElevator.h"
-#include "commands/EndEffectorDown.h"
-#include "commands/EndEffectorUp.h"
-#include "commands/OpenGrabber.h"
 
 class RobotContainer {
 
@@ -48,6 +46,7 @@ public:
     Elevator m_elevator;
     Intake m_intake;
     Vision m_vision;
+    EndEffector m_endEffector;
 
     // Controller input
     frc::XboxController* getDriver();

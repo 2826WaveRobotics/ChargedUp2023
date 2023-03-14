@@ -14,16 +14,12 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/DigitalInput.h>
-// #include <frc/DigitalOutput.h>
 #include <frc/motorcontrol/PWMSparkMax.h>
 #include <frc/XboxController.h>
 #include <rev/SparkMaxRelativeEncoder.h>
 #include <rev/CANSparkMax.h>
 #include<rev/CANSparkMaxLowLevel.h>
 #include "frc2/command/PIDSubsystem.h"
-#include "frc/PneumaticHub.h"
-#include "frc/Solenoid.h"
-#include "frc/Compressor.h"
 
 #include "Globals.h"
 
@@ -40,17 +36,9 @@ typedef enum
 typedef enum
 {
     Stow_Off,
-    Stow_EndEffectorUp,
     Stow_RetractElevator,
     Stow_Finish
 } StowState;
-
-// EndEffector functions
-typedef enum
-{
-    EF_Up,
-    EF_Down
-} EndEffectorFunction;
 
 /**
  * Elevator class shall be used to extend and retract the elevator. 
@@ -66,26 +54,11 @@ private:
     // Limit switch to detect the elevator home position
     // frc::DigitalInput m_elevatorAtHomeLimitSwitch{k_elevatorAtHomeLimitSwitch};
 
-    // IR sensor to detect if a cone is in the grabber
-    frc::DigitalInput m_detectConeLimitSwitch{k_detectConeLimitSwitch};
-
-    frc::PneumaticHub m_pneumaticHub{k_pneumaticHub};
-    frc::Compressor *m_compressor;
-
-    // EndEffector solenoid to move up. Spring to down
-    frc::Solenoid m_endEffectorSolenoid = m_pneumaticHub.MakeSolenoid(k_endEffectorOut);
-
-    // EndEffector grabber solenoid to grab and release the cone
-    frc::Solenoid m_endEffectorGrabberSolenoid = m_pneumaticHub.MakeSolenoid(k_endEffectorGrabber);
-
     // Current position of the elevator
     double m_elevatorPosition;
 
     // Elevator Home position
     double m_elevatorHomePosition;
-
-    // The motor controller for the EndEffector intake motor
-    rev::CANSparkMax *m_endEffectorMotor;
 
     // Motor controller for the elevator
     rev::CANSparkMax *m_elevatorMotorB;
@@ -105,8 +78,6 @@ private:
 
     StowState m_elevatorStowState;
     
-    EndEffectorFunction m_endEffectorFunction;
-
     // Scoring object flag. True when scoring with Cone
     bool m_isCone;
 
@@ -124,16 +95,11 @@ private:
     // Command speed to the elevator motors.
     void setElevator(double speed);
 
-    // Command speed to the endEffector motor if speed is within range.
-    void setEndEffectorRoller(double speed);
-
     double getPIDSpeed(double pidCommnd);
 
     // Constants used for Elevator functions
-    // static constexpr const double k_maxElevatorSpeed = 0.2;
     static constexpr const double k_maxElevatorSpeed = 1.0;
     static constexpr const double k_elevatorHoldSpeed = 0.05;
-    static constexpr const double k_endEffectorSpeedFactor = 0.5;
 
     // Tuning PID values
     double k_P = 4.0;
@@ -154,7 +120,8 @@ private:
     static constexpr const double k_elevatorTargetMiddleCone = 31.0;
     static constexpr const double k_elevatorTargetTopCube = 54.5;
     static constexpr const double k_elevatorTargetMiddleCube = 36.0;
-    static constexpr const double k_elevatorHumanStation = 34.65;
+    static constexpr const double k_elevatorHumanStationCone = 36.5;
+    static constexpr const double k_elevatorHumanStationCube = 34.65;
 
 public:
     Elevator();
@@ -165,12 +132,8 @@ public:
     // Initialize Elevatorobject
     void Initialize();
 
-
     // Periodic operation for the elevator
     void runElevator();
-
-    // Elevator EndEffector operations.
-    void runEndEffector();
 
     void updateValues();
 
@@ -183,25 +146,18 @@ public:
     
     //Set scoring target
     void setCustomTarget(double target);
-    void setBackoffTarget();
     void setTopConeTarget();
     void setMidConeTarget();
     void setTopCubeTarget();
     void setMidCubeTarget();
-    void setHumanStationTarget();
+    void setHumanStationConeTarget();
+    void setHumanStationCubeTarget();
     void resetTarget();
     bool isTargetSet(){ return m_targetSet; }
-    
-    // Activate (open/close) grabber. Normally close (true = closed)
-    void setGrabber(bool open);
-    void moveGrabber();
 
     bool moveToCurrentTarget();
     bool moveElevatorToTargetManual(double target);
-    void moveEndEffector(bool down);
     bool stowElevator();
     bool stowElevatorAuto();
     bool backoffElevatorAuto();
-
-    bool m_grabberClosed = false;
 };

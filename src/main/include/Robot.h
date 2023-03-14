@@ -38,5 +38,5 @@ class Robot : public frc::TimedRobot {
   bool m_dPadLastFrame = false;
   // Previous value of GetPOV()
   int m_dPadValueLastFrame = -1;
-  FILE * fileOut;
+  // FILE * fileOut;
 };

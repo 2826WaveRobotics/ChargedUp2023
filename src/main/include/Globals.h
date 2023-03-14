@@ -39,7 +39,7 @@ int const k_endofactorMotor =       13;
 int const k_endEffectorOut =            1;
 int const k_endEffectorGrabber =        0;
 // int const k_elevatorAtHomeLimitSwitch = 5;
-int const k_detectConeLimitSwitch =     5;
+// int const k_detectConeLimitSwitch =     5;
 
 // Pneumatics
 int const k_pneumaticHub =              8;

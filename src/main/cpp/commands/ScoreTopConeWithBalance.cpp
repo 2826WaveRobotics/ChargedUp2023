@@ -11,14 +11,8 @@
 // ROBOTBUILDER TYPE: SequentialCommandGroup.
 
 #include "commands/ScoreTopConeWithBalance.h"
-// #include "commands/ExtendElevatorTopCone.h"
-// #include "commands/EndEffectorDown.h"
-// #include "commands/OpenGrabber.h"
 #include "commands/WaveWaitCommand.h"
-// #include "commands/StowElevator.h"
 #include "commands/AutoBalance.h"
-// #include "commands/ScoreBackoff.h"
-// #include "commands/EndEffectorUp.h"
 #include "commands/SequentialScoreTopCone.h"
 #include "frc2/command/SequentialCommandGroup.h"
 
@@ -31,14 +25,6 @@ ScoreTopConeWithBalance::ScoreTopConeWithBalance(Elevator* m_elevator, SwerveDri
     AddCommands(
         frc2::SequentialCommandGroup
         (
-            // ExtendElevatorTopCone(m_elevator),
-            // EndEffectorDown(m_elevator),
-            // OpenGrabber(m_elevator),
-            // WaveWaitCommand(units::second_t(1.0)),
-            // ScoreBackoff(m_elevator),
-            // EndEffectorUp(m_elevator),
-            // StowElevator(m_elevator),
-
             // score cone (top)
             SequentialScoreTopCone(m_elevator),
             // pause 1 sec

@@ -126,10 +126,7 @@ void Robot::AutonomousInit() {
   }
 }
 
-void Robot::AutonomousPeriodic() {
-  //spaghetti
-  m_container->m_elevator.moveGrabber();
-}
+void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
@@ -155,7 +152,7 @@ void Robot::TeleopInit() {
   // strcat(filepath, ".txt");
   // char* filepathfrtho = const_cast<char*>(filepath.c_str());
   // fileOut = fopen(filepathfrtho, "a");
-  fileOut = fopen("/home/lvuser/swerve-test.txt", "a");
+  // fileOut = fopen("/home/lvuser/swerve-test.txt", "a");
 }
 
 double Joystick(double input, double deadzone) 
@@ -219,12 +216,12 @@ void Robot::TeleopPeriodic()
       driveCase = "Drive No Scaling";
       double PP[6];
       m_container->m_swerveDrive.DrivePods(targetJoystickLX, targetJoystickLY, targetJoystickRX, PP);
-      for (int i = 0; i < 6; i++) {
-        fputs(std::to_string(PP[i]).c_str(), fileOut);
-        fputs(" ", fileOut);
-        // std::cout << std::to_string(PP[i]).c_str() << " " << std::endl;
-      }
-      fputs("\n", fileOut);
+      // for (int i = 0; i < 6; i++) {
+      //   // fputs(std::to_string(PP[i]).c_str(), fileOut);
+      //   // fputs(" ", fileOut);
+      //   // std::cout << std::to_string(PP[i]).c_str() << " " << std::endl;
+      // }
+      // fputs("\n", fileOut);
       // std::cout << std::endl;
     }
     else if (initialSwerveState) 
@@ -282,6 +279,9 @@ void Robot::TeleopPeriodic()
   
   // Elevator Operations
   m_container->m_elevator.runElevator();
+
+  // End Effector Operations
+  m_container->m_endEffector.runEndEffector();
 
   frc::SmartDashboard::PutString("Right Pod Case", m_container->m_swerveDrive.GetRightPodCase());
   frc::SmartDashboard::PutString("Left Pod Case", m_container->m_swerveDrive.GetLeftPodCase());

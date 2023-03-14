@@ -1,13 +1,7 @@
 
 #include "commands/ScoreTopConeBackout.h"
-// #include "commands/ExtendElevatorTopCone.h"
-// #include "commands/EndEffectorDown.h"
-// #include "commands/OpenGrabber.h"
 #include "commands/WaveWaitCommand.h"
-// #include "commands/StowElevator.h"
 #include "commands/DriveTimed.h"
-// #include "commands/ScoreBackoff.h"
-// #include "commands/EndEffectorUp.h"
 #include "commands/SequentialScoreTopCone.h"
 
 ScoreTopConeBackout::ScoreTopConeBackout(Elevator* m_elevator, SwerveDrive* m_drive)
@@ -19,14 +13,6 @@ ScoreTopConeBackout::ScoreTopConeBackout(Elevator* m_elevator, SwerveDrive* m_dr
     AddCommands(
         frc2::SequentialCommandGroup
         (
-            // ExtendElevatorTopCone(m_elevator),
-            // EndEffectorDown(m_elevator),
-            // OpenGrabber(m_elevator),
-            // WaveWaitCommand(units::second_t(1.0)),
-            // ScoreBackoff(m_elevator),
-            // EndEffectorUp(m_elevator),
-            // StowElevator(m_elevator),
-
             // score cone (top)
             SequentialScoreTopCone(m_elevator),
             // pause 1 sec
